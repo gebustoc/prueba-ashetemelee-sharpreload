@@ -7,7 +7,7 @@ function ProductCard({product}) {
                 <Card.Body>    
                     <Card.Img variant="top" src={product.getImgSrc()} width="300" class="productImage"></Card.Img>
                     <h3 class="card-title">{product.getName()}</h3>
-                    <h4>${product.getDescription()}</h4>
+                    <h4>{product.getDescription()}</h4>
                     <p class="card-text"> ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}</p>
                     <Button>Comprar {product.getStock()} en stock</Button>
                 </Card.Body>

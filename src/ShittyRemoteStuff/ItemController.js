@@ -6,7 +6,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-export class ItemController{
+class ItemController{
     
     static ErrorCodes = {
         OK:0,
@@ -130,3 +130,6 @@ export class ItemController{
 }
 
 
+
+
+export default ItemController;
