@@ -12,9 +12,9 @@ function Footer() {
                 <Col md="4">
                     <h5>Enlaces Rápidos</h5>
                     <ul className="list-unstyled">
-                        <li><a href="/" class="text-white">Inicio</a></li>
-                        <li><a href="/blog" class="text-white">Blog</a></li>
-                        <li><a href="/contact" class="text-white">Contacto</a></li>
+                        <li><a href="/" className="text-white">Inicio</a></li>
+                        <li><a href="/blog" className="text-white">Blog</a></li>
+                        <li><a href="/contact" className="text-white">Contacto</a></li>
                     </ul>
                 </Col>
             </Row>

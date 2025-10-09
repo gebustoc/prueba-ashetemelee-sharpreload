@@ -1,22 +1,12 @@
 import { Container } from "react-bootstrap";
-import ItemController from "../src/ShittyRemoteStuff/ItemController";
-import ProductCard from "../src/components/organisms/ProductCard";
+import ProductContainer from "../src/components/organisms/ProductContainer";
 
 
 function Products() {
-  let cards = []
-
-  for (const product of new ItemController().getItems())cards.push(<ProductCard product={product}/>)
-  
   return (
-   <Container className="my-5 wrapper">
+   <Container className="wrapper">
      <h1>Productos</h1>
-      <Container className="py-2">
-        <h2 className="font-weight-light">Lista de productos disponibles.</h2>
-        <div className="d-flex flex-wrap justify-content-center" id="product-container">      
-          {cards}
-        </div>
-      </Container>
+      <ProductContainer text="Lista de productos disponibles."/>
    </Container>
  );
 }
