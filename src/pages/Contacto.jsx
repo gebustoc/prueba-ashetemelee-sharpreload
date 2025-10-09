@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
-import Text  from '../src/components/organisms/atoms/Text'
-import Form from '../src/components/molecules/Form'
-import Button from '../src/components/organisms/atoms/Button'
+import Text  from '../components/atoms/Text'
+import Form from '../components/molecules/Form'
+import Button from '../components/atoms/Button'
 import { Container } from 'react-bootstrap'
-
-
 
 function Contacto(){
     const initialFormData = {
