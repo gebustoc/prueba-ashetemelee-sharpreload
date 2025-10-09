@@ -4,18 +4,20 @@ import Products from '../pages/products.jsx';
 import NavBar from './components/organisms/Navbar.jsx';
 import ProductCard from "./components/organisms/ProductCard.jsx"
 import ItemController from "./ShittyRemoteStuff/ItemController.js"
+import Footer from './components/organisms/Footer.jsx';
 
 
 function App(){
  return (
    <>
-     <NavBar />
+     <NavBar/>
      <Routes>
        <Route path="/" element={<Home />} />
-       <Route path="/Products" element={<Products />} />      
+       <Route path="/Products" element={<Products />} />
      </Routes>
    </>
  );
+//<Footer/>
 }
 
 

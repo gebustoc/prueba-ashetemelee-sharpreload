@@ -1,9 +1,9 @@
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 
 
 function Products() {
  return (
-   <Container className="my-5">
+   <Container className="my-5 wrapper">
      <h1>Productos</h1>
      <p>Lista de productos disponibles.</p>
    </Container>

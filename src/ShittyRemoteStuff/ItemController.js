@@ -45,11 +45,13 @@ class ItemController{
         
 
     }
-    getItems(){
+    getItems(limit = Infinity){
         let items = JSON.parse(localStorage.getItem("items"));
         let itemRet = [];
 
         for (const id in items) {
+            //if (itemRet.length >= limit) break;
+
             itemRet.push(this.getItem(id));
         }
         return itemRet;

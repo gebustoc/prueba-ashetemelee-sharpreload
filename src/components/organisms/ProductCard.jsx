@@ -1,6 +1,8 @@
 import {Button,Card} from "react-bootstrap";
 
 function ProductCard({product}) {
+    console.log(product)
+
     return (
         <div id="product_card">
             <Card>
