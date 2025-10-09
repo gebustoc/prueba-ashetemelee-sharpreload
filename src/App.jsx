@@ -10,11 +10,11 @@ import Footer from './components/organisms/Footer.jsx';
 function App(){
  return (
    <>
-     <NavBar/>
-     <Routes>
+    <NavBar/>
+    <Routes>
        <Route path="/" element={<Home />} />
        <Route path="/Products" element={<Products />} />
-     </Routes>
+    </Routes>
    </>
  );
 //<Footer/>

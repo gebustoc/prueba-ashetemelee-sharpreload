@@ -1,5 +1,4 @@
 import { Container, Row } from "react-bootstrap";
-import Wrapper from "../src/components/organisms/atoms/Wrapper";
 import ItemController from "../src/ShittyRemoteStuff/ItemController";
 import ProductCard from "../src/components/organisms/ProductCard";
 
@@ -7,16 +6,23 @@ import ProductCard from "../src/components/organisms/ProductCard";
 function Home() {
   let cards = []
 
-  for (const product of new ItemController().getItems()) {
-    cards.push(<ProductCard product={product}/>)
-  }
+  for (const product of new ItemController().getItems(6))cards.push(<ProductCard product={product}/>)
+  
 
 
  return (
-   <Container className="my-5 wrapper">
+
+   <Container className="wrapper">
      <h1>Página de Inicio</h1>
      <p>Bienvenidos a nuestro sitio web.</p>
-      <Row>{cards}</Row>
+      <Container className="py-2">
+        <h2 className="font-weight-light">Mas Vendidos</h2>
+        <div className="d-flex flex-wrap justify-content-center" id="product-container">      
+          {cards}
+        </div>
+      </Container>
+  
+
 
    </Container> 
  );
