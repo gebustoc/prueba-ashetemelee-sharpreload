@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 function Footer() {
     return (
-        <Container>
+        <Container fluid className="bg-dark text-white py-4">
             <Row>
                 <Col md="4">
                     <h5>Sobre Nosotros</h5>
@@ -14,7 +14,7 @@ function Footer() {
                     <ul className="list-unstyled">
                         <li><a href="/" class="text-white">Inicio</a></li>
                         <li><a href="/blog" class="text-white">Blog</a></li>
-                        <li><a href="/contact" class="text-white">Contacto</a></li>
+                        <li><a href="/ContactO" class="text-white">Contacto</a></li>
                     </ul>
                 </Col>
             </Row>

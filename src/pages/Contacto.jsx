@@ -52,7 +52,7 @@ function Contacto(){
     };
 
     return (
-        <Container className="my-5">
+        <Container className="wrapper" style={{"min-height": "100vh"}}>
             <Text variant="h1">Contacto</Text>
             <Text variant="p">Llena el formulario para poder contactarte</Text>
             <Form inputs={formInputs} />
