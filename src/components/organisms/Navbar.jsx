@@ -1,6 +1,5 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-
 function NavBar() {
  return (
    <Navbar bg="dark" variant="dark" expand="lg">
@@ -13,14 +12,12 @@ function NavBar() {
            <Nav.Link href="/products">Productos</Nav.Link>
            <Nav.Link href="/us">Nosotros</Nav.Link>
            <Nav.Link href="/blog">Blog</Nav.Link>
-           <Nav.Link href="/contact">Contacto</Nav.Link>
-            
+           <Nav.Link href="/Contacto">Contacto</Nav.Link>   
          </Nav>
        </Navbar.Collapse>
      </Container>
    </Navbar>
  );
 }
-
 
 export default NavBar;
