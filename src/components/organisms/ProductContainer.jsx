@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import ItemController from "../../ShittyRemoteStuff/ItemController";
 import ProductCard from "./ProductCard";
+import Text from "../atoms/Text";
 
 function ProductContainer({text, limit=Infinity}){
     let cards = []
@@ -12,7 +13,7 @@ function ProductContainer({text, limit=Infinity}){
 
     return (
       <Container className="py-2">
-        <h2 className="font-weight-light">{text}</h2>
+        <Text className="font-weight-light" variant="h2" children={text}/>
         <div className="d-flex flex-wrap justify-content-center" id="product-container"  style={{gap:"1rem"}}>      
           {cards}
         </div>

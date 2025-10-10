@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
-import ProductContainer from "../src/components/organisms/ProductContainer";
+import ProductContainer from "../components/organisms/ProductContainer";
+
 
 
 function Products() {

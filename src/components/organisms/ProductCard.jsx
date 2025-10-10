@@ -1,5 +1,6 @@
 import {Button,Card} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Text from "../atoms/Text";
 
 function ProductCard({product}) {
     const navigate = useNavigate();
@@ -9,8 +10,8 @@ function ProductCard({product}) {
             <Card>
                 <Card.Img src={product.getImgSrc()} width="300" height="300"></Card.Img>
                 <Card.Body>    
-                    <h3 className="card-title">{product.getName()}</h3>
-                    <h4>{product.getDescription()}</h4>
+                    <Text className="card-title" variant="h3" children={product.getName()}/>
+                    <Text variant="h4" children={product.getDescription()}/>
                     <Card.Text> ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}</Card.Text>
                     <Button onClick={()=>{
                         navigate(`Product/${product.getId()}`)

@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
-import ItemController from "../src/ShittyRemoteStuff/ItemController";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import ProductCard from "../src/components/organisms/ProductCard";
+import { useParams } from "react-router-dom";
+import ItemController from "../ShittyRemoteStuff/ItemController";
+import Text from "../components/atoms/Text";
 
 function ProductInfo() {
     const { id } = useParams();
@@ -20,15 +20,16 @@ function ProductInfo() {
             <Row className="align-items center mb-5 p3">
                 <Col>
                     <img className="img-fluid border"
-                        src={"."+product.getImgSrc()}
+                        src={"/"+product.getImgSrc()}
                         alt="" id="imagen-producto" style={{width:"32rem"}}>
                     </img>
                 </Col>
                 <Col>
-                    <h1 className="py-4" id="nombre-producto">{product.getName()}</h1>
-                    <h2 className="py-4" id="precio-producto">${product.getPrice()}</h2>
+                    <Text variant="h1" className="py-4" children={product.getName()}/>
+                    <Text variant="h2" className="py-4" children={product.getName()}/>
+                    
                     <Button className="btn btn-primary" id="boton-compra">🛒 Añadir al carrito</Button>
-                    <h3 id="desc-producto">{product.getDescription()}</h3>
+                    <Text variant="h3" children={product.getDescription()}/>
 
                 </Col>
 

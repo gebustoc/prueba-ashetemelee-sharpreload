@@ -1,7 +1,5 @@
 import { Container, Row } from "react-bootstrap";
-import ItemController from "../src/ShittyRemoteStuff/ItemController";
-import ProductCard from "../src/components/organisms/ProductCard";
-import ProductContainer from "../src/components/organisms/ProductContainer";
+import ProductContainer from "../components/organisms/ProductContainer";
 
 
 function Home() {
