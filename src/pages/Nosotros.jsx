@@ -13,7 +13,6 @@ function Nosotros(){
             </Card>
         </Container>
     );
-
 }
 
 export default Nosotros;
