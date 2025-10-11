@@ -46,7 +46,6 @@ function Contacto(){
         alert(message);
     };
 
-    // Manejar la limpieza del formulario
     const handleClear = () => {
         setFormData(initialFormData);
     };
@@ -54,7 +53,7 @@ function Contacto(){
     return (
         <Container className="wrapper">
             <Text variant="h1">Contacto</Text>
-            <Text variant="p">Llena el formulario para poder contactarte</Text>
+            <Text variant="p">Llena el formulario para contactarnoss</Text>
             <Form inputs={formInputs} />
             <div className="mt-3">
                 <Button variant="primary" onClick={handleSubmit} className="me-2">

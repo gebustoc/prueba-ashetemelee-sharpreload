@@ -6,6 +6,7 @@ import Products from './pages/Products.jsx';
 import ProductInfo from './pages/ProductInfo.jsx'
 import Contacto from './pages/Contacto.jsx'
 import Nosotros from './pages/Nosotros.jsx'
+import Blog from './pages/Blog.jsx';
 
 
 function App(){
@@ -20,7 +21,7 @@ function App(){
        <Route path="/Product/:id" element={<ProductInfo />} />
        <Route path="/Contacto" element={<Contacto/>} />
        <Route path="us" element={<Nosotros/>}/>
-
+       <Route path="blog" element={<Blog/>}/>
     </Routes>
     <Footer/>
    </>
