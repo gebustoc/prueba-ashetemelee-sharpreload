@@ -1,9 +1,9 @@
 import BlogCardContent from "../molecules/BlogCardContent";
-import Link from "../atoms/Link";
+import { Link } from "react-router-dom";
 
 function BlogCard({link, title, description, image}){
     return (
-        <Link href={link} className="text-decoration-none text-current">
+        <Link to={link} className="blog-card text-decoration-none text-current">
             <BlogCardContent title={title} description={description} image={image}/>
         </Link>
     )
