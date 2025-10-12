@@ -1,5 +1,7 @@
+
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import Button from '../atoms/Button';
+import LoginButtons from '../molecules/LoginButtons';
 
 function NavBar() {
  return (
@@ -13,14 +15,12 @@ function NavBar() {
            <Nav.Link href="/products">Productos</Nav.Link>
            <Nav.Link href="/us">Nosotros</Nav.Link>
            <Nav.Link href="/blog">Blog</Nav.Link>
-           <Nav.Link href="/Contacto">Contacto</Nav.Link>
+           <Nav.Link href="/contact">Contacto</Nav.Link>   
          </Nav>
-          <Nav className="ms-auto">
-            <Button className="btn" href="/login">Iniciar Sesión</Button>
-            <Button className="btn ms-2" href="/register">Registrarse</Button>
-          </Nav>
+         <div className='d-flex flex-row-reverse'><LoginButtons/></div>
        </Navbar.Collapse>
      </Container>
+     
    </Navbar>
  );
 }

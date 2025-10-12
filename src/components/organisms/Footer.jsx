@@ -14,7 +14,7 @@ function Footer() {
                     <ul className="list-unstyled">
                         <li><a href="/" className="text-white">Inicio</a></li>
                         <li><a href="/blog" className="text-white">Blog</a></li>
-                        <li><a href="/ContactO" className="text-white">Contacto</a></li>
+                        <li><a href="/contact" className="text-white">Contacto</a></li>
                     </ul>
                 </Col>
             </Row>

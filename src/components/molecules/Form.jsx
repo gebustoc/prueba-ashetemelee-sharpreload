@@ -6,7 +6,7 @@ function DynamicForm({inputs = []}) {
     return (
         <Form>
             {inputs.map((input, index) => (
-                <Form.Group key={input.id || index} controlId={`input-${input.id || index}`}>
+                <Form.Group key={input.id || index} id={`input-${input.id || index}`}>
                     {input.label && <Form.Label>{input.label}</Form.Label>}
                     <Input {...input} />
                     {input.error && <Form.Text className="text-danger">{input.error}</Form.Text>}

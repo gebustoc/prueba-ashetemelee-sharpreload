@@ -10,23 +10,31 @@ import Blog from './pages/Blog.jsx';
 import NewsPage from './pages/NewsPage.jsx'
 import NewsPage2 from './pages/NewsPage2.jsx';
 import Login from './pages/Login.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+
 
 function App(){
 
+// usualmente no veo que en las url usen mayusculas para ser honesto
  return (
    <>
      <NavBar/>
      <Routes>
-       <Route path="/" element={<Home/>}/>
-       <Route path="/Products" element={<Products />}/>
-       <Route path="/Product/:id" element={<ProductInfo/>}/>
-       <Route path="/products/Product/:id" element={<ProductInfo/>} />
-       <Route path="/Contacto" element={<Contacto/>}/>
-       <Route path="/us" element={<Nosotros/>}/>
+       <Route path="/" element={<Home/>} />
+       <Route path="/products" element={<Products />} />
+       <Route path="/product/:id" element={<ProductInfo />} />
+       <Route path="/product/:id" element={<ProductInfo />} />
+       <Route path="/contact" element={<Contacto/>} />
+       <Route path="us" element={<Nosotros/>}/>
+       <Route path="login" element={<Login/>}/>
+       <Route path="register" element={<Register/>}/>
        <Route path="/blog" element={<Blog/>}/>
        <Route path="/news" element={<NewsPage/>}/>
        <Route path="/news2" element={<NewsPage2/>}/>
        <Route path="/login" element={<Login/>}/>
+
+
     </Routes>
     <Footer/>
    </>

@@ -1,4 +1,4 @@
-import { User } from "./User.js ";
+import User from "./User";
 
 // strip the stuff in the bottom
 export class UserController{
@@ -95,3 +95,4 @@ export class UserController{
 
 }
 
+export default UserController;

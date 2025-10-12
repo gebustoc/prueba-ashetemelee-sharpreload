@@ -1,4 +1,4 @@
-import { Item } from "./Item.js";
+import Item from "./Item";
 
 function getRandomInt(min, max) {
   const minCeiled = Math.ceil(min);

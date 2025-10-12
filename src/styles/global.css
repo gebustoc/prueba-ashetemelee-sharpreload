@@ -48,3 +48,7 @@
     line-height: 1.6;
     margin-bottom: 1rem;
 }
+.login_container{
+    gap:.5rem;
+    display:flex;
+}
