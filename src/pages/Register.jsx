@@ -60,7 +60,7 @@ function Register() {
         if (!new UserController().userExists(formData.email)){
             new UserController().saveUser(dummyUser);
             localStorage.setItem("cur_user",formData.email);
-            navigate("");
+            navigate("/");
             return;
         }
         alert("el usuario ya existe.");

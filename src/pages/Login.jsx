@@ -71,7 +71,7 @@ function Login() {
             default:
                 //alert("logeado :)");
                 localStorage.setItem("cur_user",userData.getUserName());
-                navigate("")
+                navigate("/")
                 break;
         }
 

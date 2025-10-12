@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 
 function DynamicForm({inputs = []}) {
     return (
+        // la wea mandaba como 39021392 errores si se dejaba como controlID|
         <Form>
             {inputs.map((input, index) => (
                 <Form.Group key={input.id || index} id={`input-${input.id || index}`}>

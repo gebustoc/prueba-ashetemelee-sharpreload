@@ -12,8 +12,8 @@ function LoginButtons() {
     if (loggedUser == null){
         return (
             <Container className="login_container">
-                <Button children="Iniciar Sesion" onClick={()=>navigate("login")} />
-                <Button children="Registrar" onClick={()=>navigate("register")} />
+                <Button children="Iniciar Sesion" onClick={()=>navigate("/login")} />
+                <Button children="Registrar" onClick={()=>navigate("/register")} />
             </Container>
         );
     }
@@ -23,6 +23,7 @@ function LoginButtons() {
                 window.location.href = "/"
                 localStorage.removeItem("cur_user")
             }}/>
+            <Button children="🛒 Carrito" onClick={()=>navigate("/cart")} />
 
 
         </Container>

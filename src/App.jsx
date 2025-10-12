@@ -10,8 +10,8 @@ import Blog from './pages/Blog.jsx';
 import NewsPage from './pages/NewsPage.jsx'
 import NewsPage2 from './pages/NewsPage2.jsx';
 import Login from './pages/Login.jsx';
-import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import NewsTransition from './pages/NewsTransition.jsx';
 
 
 function App(){
@@ -30,11 +30,9 @@ function App(){
        <Route path="login" element={<Login/>}/>
        <Route path="register" element={<Register/>}/>
        <Route path="/blog" element={<Blog/>}/>
-       <Route path="/news" element={<NewsPage/>}/>
-       <Route path="/news2" element={<NewsPage2/>}/>
+       <Route path="/news/" element={<NewsPage/>}/>
+       <Route path="/news/:id" element={<NewsTransition/>}/>       
        <Route path="/login" element={<Login/>}/>
-
-
     </Routes>
     <Footer/>
    </>

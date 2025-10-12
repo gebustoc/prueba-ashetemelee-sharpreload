@@ -14,7 +14,7 @@ function ProductCard({product}) {
                     <Text variant="h4" children={product.getDescription()}/>
                     <Card.Text> ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}</Card.Text>
                     <Button onClick={()=>{
-                        navigate(`product/${product.getId()}`)
+                        navigate(`/product/${product.getId()}`)
                     }}>Comprar {product.getStock()} en stock</Button>
                 </Card.Body>
             </Card>
