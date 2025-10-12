@@ -9,6 +9,7 @@ import Nosotros from './pages/Nosotros.jsx'
 import Blog from './pages/Blog.jsx';  
 import NewsPage from './pages/NewsPage.jsx'
 import NewsPage2 from './pages/NewsPage2.jsx';
+import Login from './pages/Login.jsx';
 
 function App(){
 
@@ -18,12 +19,14 @@ function App(){
      <Routes>
        <Route path="/" element={<Home/>}/>
        <Route path="/Products" element={<Products />}/>
-       <Route path="products/Product/:id" element={<ProductInfo/>} />
+       <Route path="/Product/:id" element={<ProductInfo/>}/>
+       <Route path="/products/Product/:id" element={<ProductInfo/>} />
        <Route path="/Contacto" element={<Contacto/>}/>
        <Route path="/us" element={<Nosotros/>}/>
        <Route path="/blog" element={<Blog/>}/>
        <Route path="/news" element={<NewsPage/>}/>
        <Route path="/news2" element={<NewsPage2/>}/>
+       <Route path="/login" element={<Login/>}/>
     </Routes>
     <Footer/>
    </>

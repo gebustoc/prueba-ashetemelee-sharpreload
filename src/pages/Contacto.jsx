@@ -51,7 +51,7 @@ function Contacto(){
     };
 
     return (
-        <Container className="wrapper">
+        <Container className="wrapper my-3">
             <Text variant="h1">Contacto</Text>
             <Text variant="p">Llena el formulario para contactarnoss</Text>
             <Form inputs={formInputs} />
@@ -63,8 +63,6 @@ function Contacto(){
                     Limpiar
                 </Button>
             </div>
-
-            
         </Container>
     );
 }
