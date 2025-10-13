@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
+import Text from "../atoms/Text";
 
 
 function Footer() {
@@ -6,11 +7,11 @@ function Footer() {
         <Container fluid className="bg-dark text-white py-4">
             <Row>
                 <Col md="4">
-                    <h5>Sobre Nosotros</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id libero ipsum.</p>
+                    <Text variant="h5"children="Sobre Nosotros"/>
+                    <Text variant="p"children="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id libero ipsum."/>
                 </Col>
                 <Col md="4">
-                    <h5>Enlaces Rápidos</h5>
+                    <Text variant="h5"children="Enlaces Rápidos"/>
                     <ul className="list-unstyled">
                         <li><a href="/" className="text-white">Inicio</a></li>
                         <li><a href="/blog" className="text-white">Blog</a></li>
@@ -19,7 +20,7 @@ function Footer() {
                 </Col>
             </Row>
             <div className="text-center mt-4">
-                <p> 2025 Pse Enterprise. Todos los derechos reservados.</p>
+                <Text variant="p"children="2025 Pse Enterprise. Todos los derechos reservados."/>
             </div>
         </Container>
     );

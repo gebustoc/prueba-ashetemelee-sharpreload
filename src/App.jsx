@@ -12,6 +12,7 @@ import NewsPage2 from './pages/NewsPage2.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import NewsTransition from './pages/NewsTransition.jsx';
+import Carrito from './pages/Carrito.jsx';
 
 
 function App(){
@@ -33,6 +34,8 @@ function App(){
        <Route path="/news/" element={<NewsPage/>}/>
        <Route path="/news/:id" element={<NewsTransition/>}/>       
        <Route path="/login" element={<Login/>}/>
+       <Route path="/cart" element={<Carrito/>}/>
+
     </Routes>
     <Footer/>
    </>

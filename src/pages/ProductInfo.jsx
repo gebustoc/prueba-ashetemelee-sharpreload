@@ -20,7 +20,7 @@ function ProductInfo() {
     const [cartCount, setCartCount] = useState(
         hasUser ? new UserController().getUser(localStorage.getItem("cur_user")).getCarrito().filter((value)=>{product.getId() == value}).length : -1 
     );
-
+    const [stock, setStock] = useState(product.getStock());
     
 
     const navigate = useNavigate();
@@ -39,7 +39,13 @@ function ProductInfo() {
                     <Text variant="h2" className="py-4" children={"$"+new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}/>
                     
                     <Col style={{display:"flex",gap:".5rem"}}>
-                        <Button className="btn btn-primary" id="boton-compra" children={`Comprar (${product.getStock()} restantes)`} disabled={!(hasUser && product.getStock() > 0)} onClick={()=>navigate(`/buy/${product.getId()}`)}/>
+                        <Button className="btn btn-primary" id="boton-compra" children={`Comprar (${product.getStock()} restantes)`} disabled={!(hasUser && product.getStock() > 0)} 
+                            onClick={()=>{
+                                product.setStock(stock-1);
+                                new ItemController().updateItem(product);
+                                setStock(stock-1);
+                        }}/>
+
                         <Button className="btn btn-primary" id="boton-carrito" children={
                             "🛒 Añadir al carrito "+ (cartCount > 0 ? `(${cartCount} en el carrito)`: "" )} 
                             disabled={!(hasUser) } 

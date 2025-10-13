@@ -25,7 +25,6 @@ function NewsTransition() {
             return (
                 <Container className="row align-items-center">
                     {(()=>{if (wastingmyTimeRN) return <Text variant="h1" children="weon ql malo"/>}).call()}
-
                     <video controls onEnded={()=>setWastingmyTimeRN(true)}>
                     <source src="/./img/funny.mp4" type="video/mp4"/>
                     </video> 

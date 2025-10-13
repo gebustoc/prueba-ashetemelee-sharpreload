@@ -50,7 +50,7 @@ class ItemController{
         let itemRet = [];
 
         for (const id in items) {
-            //if (itemRet.length >= limit) break;
+            if (itemRet.length >= limit) break;
 
             itemRet.push(this.getItem(id));
         }
