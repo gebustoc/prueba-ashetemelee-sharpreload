@@ -1,7 +1,7 @@
 // src/test/Button.spec.jsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Button from '../../components/atoms/Button';
+import Button from '../../../components/atoms/Button';
 
 
 

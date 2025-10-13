@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./User.js";
 
 // strip the stuff in the bottom
 export class UserController{

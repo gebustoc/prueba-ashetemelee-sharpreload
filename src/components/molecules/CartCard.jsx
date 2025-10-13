@@ -7,7 +7,7 @@ import ItemController from "../../ShittyRemoteStuff/ItemController";
 import { useState } from "react";
 
 
-function CartCard({product,callback}){
+function CartCard({product,eraseItem}){
     const navigate = useNavigate()
     const [stock, setStock] = useState(product.getStock())
     return (
@@ -22,9 +22,9 @@ function CartCard({product,callback}){
                         product.setStock(stock-1);
                         new ItemController().updateItem(product);
                         setStock(stock-1);
-                        callback()
+                        eraseItem()
                     }}/>
-                    <Button children={<Image src="./img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""/> }  onClick={callback} />
+                    <Button children={<Image src="./img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""/> }  onClick={eraseItem} />
                     </div>
                 </Col>
             </Row>

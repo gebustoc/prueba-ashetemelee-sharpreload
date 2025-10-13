@@ -1,4 +1,4 @@
-import Item from "./Item";
+import Item from "./Item.js";
 
 function getRandomInt(min, max) {
   const minCeiled = Math.ceil(min);
@@ -36,8 +36,6 @@ class ItemController{
                 let stock = getRandomInt(4,20);
                 this.saveItem(new Item(`test-${i}`,"nose",Math.random()*99999999,stock,priceMult,"./img/tetodance.webp"));   
             }
-
-
 
 
         }

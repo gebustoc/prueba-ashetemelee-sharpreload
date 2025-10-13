@@ -7,13 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "karma start karma.conf.cjs --single-run",
+    "test:watch": "karma start"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "react": "^19.1.1",
+    "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.1.1",
+    "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.3"
   },
   "devDependencies": {
@@ -32,7 +34,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.4.0",
-    "jasmine-core": "^5.11.0",
+    "jasmine-core": "^5.12.0",
     "karma": "^6.4.4",
     "karma-babel-preprocessor": "^8.0.2",
     "karma-chrome-launcher": "^3.2.0",

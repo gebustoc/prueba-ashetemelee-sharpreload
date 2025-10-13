@@ -11,7 +11,7 @@ function CartContainer({user}){
     const [cart, setCart] = useState(user.getCarrito());
 
     if (cart.length == 0){
-        return <Text class="font-weight-light no-cuenta" children="No tienes nada en el carrito.." variant="h2"/>;
+        return <Text className="font-weight-light no-cuenta" children="No tienes nada en el carrito.." variant="h2"/>;
     }
     let productos = [];
     cart.map((item,i)=>{
@@ -19,6 +19,7 @@ function CartContainer({user}){
             user.getCarrito().splice(i,1);
             new UserController().updateUser(user);
             setCart(Array.from(user.getCarrito()));
+            console.log("???")
         }}/>)}
     );
 

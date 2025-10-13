@@ -24,4 +24,5 @@ describe('Home Page', () => {
    expect(container).toHaveClass('container'); // Verifica la clase de Bootstrap
    expect(container).toHaveClass('my-5'); // Verifica la clase my-5
  });
+
 });

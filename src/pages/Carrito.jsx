@@ -10,8 +10,8 @@ function Carrito() {
     if (!new UserController().userExists(localStorage.getItem("cur_user"))){
         return (
             <Container className="wrapper">
-                <Text class="font-weight-light" children="Carrito" variant="h1"/>
-                <Text class="font-weight-light no-cuenta" children="No Has iniciado sesion" variant="h2"/>
+                <Text className="font-weight-light" children="Carrito" variant="h1"/>
+                <Text className="font-weight-light no-cuenta" children="No Has iniciado sesion" variant="h2"/>
             </Container>
         );
     }  
@@ -24,7 +24,7 @@ function Carrito() {
         <Container className="wrapper">
 
             <Container className="d-flex" style={{gap:"1rem"}}>
-                <Text class="font-weight-light" children="Carrito" variant="h1"/>  
+                <Text className="font-weight-light" children="Carrito" variant="h1"/>  
             </Container>
 
             <CartContainer user={userData}/>
