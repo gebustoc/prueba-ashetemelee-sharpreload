@@ -1,26 +1,45 @@
 import {Button,Card} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Text from "../atoms/Text";
+import '../../styles/product-card.css';
+
 
 function ProductCard({product}) {
-    const navigate = useNavigate();
+    
+  const navigate = useNavigate();
 
-    return (
-        <div id="product_card" style={{width:"18rem"}}>
-            <Card>
-                <Card.Img src={product.getImgSrc()} width="300" height="300"></Card.Img>
-                <Card.Body>    
-                    <Text className="card-title" variant="h3" children={product.getName()}/>
-                    <Text variant="h4" children={product.getDescription()}/>
-                    <Card.Text> ${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}</Card.Text>
-                    <Button onClick={()=>{
-                        navigate(`/product/${product.getId()}`)
-                    }}>Comprar {product.getStock()} en stock</Button>
-                </Card.Body>
-            </Card>
-        </div>
+  const imageUrl = product.imagen || "https://m.media-amazon.com/images/I/51N7-BydsDL.jpg";
 
-    );
+  return (
+    <div id="product_card" style={{ width: "18rem" }}>
+      <Card>
+        <Card.Img 
+        className="product-image"
+          src={imageUrl}
+          width="300"
+          height="300"
+          alt={product.nombre}
+          onClick={() => navigate(`/product/${product.id}`)}
+        />
+
+        <Card.Body>    
+          <Card.Title>{product.nombre}</Card.Title>
+
+          <Card.Text>{product.descripcion}</Card.Text>
+
+          <Card.Text>
+            {new Intl.NumberFormat("es-CL", { 
+              style: "currency", 
+              currency: "CLP" 
+            }).format(product.precio)}
+          </Card.Text>
+
+          <Button onClick={() => navigate(`/product/${product.id}`)}>
+            Comprar — {product.stock} en stock
+          </Button>
+        </Card.Body>
+      </Card>
+    </div>
+  );
 }
 
 

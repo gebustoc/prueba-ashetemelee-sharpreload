@@ -1,6 +1,7 @@
 import  HeroSection  from "../components/organisms/HeroSection";
 import  ArticleContent from "../components/organisms/ArticleContent";
 import { Container } from "react-bootstrap";
+import "../styles/news.css"
 
 function NewsPage2() {
     return (

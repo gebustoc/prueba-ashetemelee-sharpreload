@@ -1,8 +1,6 @@
 
-import { Container, Row } from "react-bootstrap";
+import { Container, Carousel } from "react-bootstrap";
 import ProductContainer from "../components/organisms/ProductContainer";
-import { Carousel } from "react-bootstrap";
-
 
 function Home() {
 
@@ -21,16 +19,10 @@ function Home() {
       <Carousel.Item>
           <img src="./img/WEB-Banner-Header-1920x300-.webp" className="d-block w-100 carousel-img" alt="nocargojeje"></img>
       </Carousel.Item>
-
-
     </Carousel>
-
-    <ProductContainer text="Mas Vendidos" limit={6}></ProductContainer>
-
-
+    <ProductContainer showFilters={false}/>
    </Container> 
  );
 }
-
 
 export default Home;

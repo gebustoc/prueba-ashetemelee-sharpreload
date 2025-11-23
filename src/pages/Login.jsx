@@ -4,10 +4,9 @@ import {useState } from "react";
 import Button from "../components/atoms/Button";
 import Text from "../components/atoms/Text";
 import Form from "../components/molecules/Form";
-
 import UserController from "../ShittyRemoteStuff/UserController";
 import User from "../ShittyRemoteStuff/User";
-
+import '../styles/login.css';
 
 function Login() {
     if (localStorage.getItem("cur_user") !== null){
@@ -54,7 +53,6 @@ function Login() {
 
     ];
 
-
     const shittyMockValidateAcc = ()=>{
         // play, posture and pretend i actually hashed my stuff (this test isn't about that and there's only 1 day remaining)
         const userData = new User(formData.email,formData.password)
@@ -74,13 +72,8 @@ function Login() {
                 navigate("/")
                 break;
         }
-
-
-
     }
     
-
-
     return (
         <Container className="wrapper">
             <Text children="Bienvenido" variant="h1" className="text-center"></Text>
@@ -97,13 +90,9 @@ function Login() {
                 </Card>
 
             </Col>
-
-
             </Row>
         </Container>
     )
-
-
 }
 
 export default Login;

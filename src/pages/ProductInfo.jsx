@@ -1,82 +1,97 @@
-import {Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import ItemController from "../ShittyRemoteStuff/ItemController";
+import ProductosService from "../services/ProductosService";
 import Text from "../components/atoms/Text";
 import Button from "../components/atoms/Button";
-import UserController from "../ShittyRemoteStuff/UserController";
-import { useState } from "react";
+import Image from "../components/atoms/Image";
+import { useState, useEffect } from "react";
 
 function ProductInfo() {
-    const { id } = useParams();
-    const product = new ItemController().getItem(parseInt(id));
-    if (!product){
-        return (
-            <Container className="wrapper">
-                <h1>no se pudo encontrar el producto lol</h1>
-            </Container>
-        );
-    }
-    const hasUser = new UserController().userExists(localStorage.getItem("cur_user"));
-    const [cartCount, setCartCount] = useState(
-        hasUser ? new UserController().getUser(localStorage.getItem("cur_user")).getCarrito().filter((value)=>{product.getId() == value}).length : -1 
-    );
-    const [stock, setStock] = useState(product.getStock());
-    
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  const isLogged = !!localStorage.getItem("cur_user");
+
+  useEffect(() => {
+    ProductosService.getProductoById(id)
+      .then(data => {
+        setProducto(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error cargando producto:", err);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
     return (
-        <Container className="wrapper">
-            <Row className="align-items center mb-5 p3">
-                <Col>
-                    <img className="img-fluid border"
-                        src={"/"+product.getImgSrc()}
-                        alt="" id="imagen-producto" style={{width:"32rem"}}>
-                    </img>
-                </Col>
-                <Col>
-                    <Text variant="h1" className="py-4" children={product.getName()}/>
-                    <Text variant="h2" className="py-4" children={"$"+new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.getPrice())}/>
-                    
-                    <Col style={{display:"flex",gap:".5rem"}}>
-                        <Button className="btn btn-primary" id="boton-compra" children={`Comprar (${product.getStock()} restantes)`} disabled={!(hasUser && product.getStock() > 0)} 
-                            onClick={()=>{
-                                product.setStock(stock-1);
-                                new ItemController().updateItem(product);
-                                setStock(stock-1);
-                        }}/>
-
-                        <Button className="btn btn-primary" id="boton-carrito" children={
-                            "🛒 Añadir al carrito "+ (cartCount > 0 ? `(${cartCount} en el carrito)`: "" )} 
-                            disabled={!(hasUser) } 
-                            onClick={()=>{
-                                const userData = new UserController().getUser(localStorage.getItem("cur_user"));
-                                userData.setCarrito(userData.getCarrito().push(product.getId()));
-                                new UserController().updateUser(userData);
-                                setCartCount(cartCount+1);
-                        }}/>
-                    </Col>
-                    
-                    <Text variant="h3" children={product.getDescription()}/>
-
-                </Col>
-
-            </Row>
-
-
-        </Container>
-
+      <Container className="wrapper py-5">
+        <h3>Cargando producto...</h3>
+      </Container>
     );
+  }
 
+  if (!producto) {
+    return (
+      <Container className="wrapper py-5">
+        <h1>No se pudo encontrar el producto</h1>
+      </Container>
+    );
+  }
+
+  const handleAddToCart = () => {
+    if (!isLogged) {
+      alert("Debe iniciar sesión para añadir productos al carrito.");
+      return;
+    }
+
+    alert(`Producto "${producto.nombre}" añadido al carrito (demo).`);
+  };
+
+  return (
+    <Container className="wrapper">
+      <Row className="align-items-center mb-5 p-3">
+        <Col>
+          <Image 
+          className="img-fluid-border" 
+          src={"https://m.media-amazon.com/images/I/51N7-BydsDL.jpg"} 
+          alt={producto.nombre}
+          />
+        </Col>
+
+        <Col>
+          <Text variant="h1" className="py-4" children={producto.nombre} />
+
+          <Text
+            variant="h2"
+            className="py-4"
+            children={`$${new Intl.NumberFormat("es-CL").format(producto.precio)}`}
+          />
+
+          <Col style={{ display: "flex", gap: ".5rem" }}>
+
+            <Button
+              className="btn btn-primary"
+              children={`Comprar (${producto.stock} restantes)`}
+              disabled={!isLogged || producto.stock <= 0}
+              onClick={() => alert("Debe iniciar sesión para comprar")}
+            />
+            <Button
+              className="btn btn-primary"
+              children="Añadir al carrito"
+              onClick={handleAddToCart}
+            />
+          </Col>
+
+          <Text variant="h3" className="mt-4" children={producto.descripcion} />
+        </Col>
+      </Row>
+    </Container>
+  );
 }
-/*
-(()=>{
-                                if (hasUser){
-                                    const cartCount = new UserController().getUser(localStorage.getItem("cur_user")).getCarrito().filter((value)=>{product.getId() == value}).length
-                                    if (cartCount == 0) return ""
-                                    return 
-                                }
-                                return ""
-                            }).call()*/
 
 export default ProductInfo;

@@ -14,11 +14,22 @@ class ProductosService {
         }
     }
 
+    async getProductoById(id) {
+        try {
+            const response = await axios.get(`${API_URL}/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error("Error obteniendo producto:", error);
+            throw error;
+        }
+        }
+
+
     async createProducto(productoData) {
         try {
             const response = await axios.post(API_URL, productoData, {
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type':'application/json',
                 },
             });
             return response.data;

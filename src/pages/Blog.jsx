@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Text from "../components/atoms/Text";
 import BlogCard from "../components/organisms/BlogCard";
+import "../styles/blog.css"
 
 function Blog() {
   return (

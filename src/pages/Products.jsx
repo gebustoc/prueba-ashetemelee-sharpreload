@@ -1,8 +1,6 @@
 import { Container } from "react-bootstrap";
 import ProductContainer from "../components/organisms/ProductContainer";
-
-
-
+  
 function Products() {
   return (
    <Container className="wrapper">
@@ -11,6 +9,5 @@ function Products() {
    </Container>
  );
 }
-
 
 export default Products;

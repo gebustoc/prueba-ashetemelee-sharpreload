@@ -8,16 +8,13 @@ import Contacto from './pages/Contacto.jsx'
 import Nosotros from './pages/Nosotros.jsx'
 import Blog from './pages/Blog.jsx';  
 import NewsPage from './pages/NewsPage.jsx'
-import NewsPage2 from './pages/NewsPage2.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import NewsTransition from './pages/NewsTransition.jsx';
 import Carrito from './pages/Carrito.jsx';
 
-
 function App(){
 
-// usualmente no veo que en las url usen mayusculas para ser honesto
  return (
    <>
      <NavBar/>
@@ -35,7 +32,6 @@ function App(){
        <Route path="/news/:id" element={<NewsTransition/>}/>       
        <Route path="/login" element={<Login/>}/>
        <Route path="/cart" element={<Carrito/>}/>
-
     </Routes>
     <Footer/>
    </>
