@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
-import { useState } from "react";
+import UserService from "../../services/UserService";
 
 function LoginButtons() {
     const navigate = useNavigate();
@@ -16,16 +16,14 @@ function LoginButtons() {
                 <Button children="Registrar" onClick={()=>navigate("/register")} />
             </Container>
         );
-    }
+    }   
     return (
         <Container className="login_container">
             <Button children="Cerrar Sesion" onClick={()=>{
-                window.location.href = "/"
-                localStorage.removeItem("cur_user")
+                UserService.logout();   
+                navigate("/login")
             }}/>
             <Button children="🛒 Carrito" onClick={()=>navigate("/cart")} />
-
-
         </Container>
     );
 }

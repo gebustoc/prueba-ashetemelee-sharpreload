@@ -1,15 +1,32 @@
 import React from "react";
-import { Input } from "../atoms/Input";
+import { Input } from "../atoms/Input"; 
 import { Form } from "react-bootstrap";
 
 function DynamicForm({inputs = []}) {
     return (
-        // la wea mandaba como 39021392 errores si se dejaba como controlID|
         <Form>
             {inputs.map((input, index) => (
-                <Form.Group key={input.id || index} id={`input-${input.id || index}`}>
+                <Form.Group className="mb-3" key={input.id || index} controlId={`input-${input.id || index}`}>
+                    
                     {input.label && <Form.Label>{input.label}</Form.Label>}
-                    <Input {...input} />
+                    
+                    {input.type === 'select' ? (
+                        <Form.Select
+                            value={input.value}
+                            onChange={input.onChange}
+                            isInvalid={!!input.error}
+                        >
+                            <option value="">Seleccione una opción...</option>
+                            {(input.options || []).map((option) => (
+                                <option key={option.id} value={option.id}>
+                                    {option.nombre || option.descripcion || "Opción"} 
+                                </option>
+                            ))}
+                        </Form.Select>
+                    ) : (
+                        <Input {...input} />
+                    )}
+
                     {input.error && <Form.Text className="text-danger">{input.error}</Form.Text>}
                 </Form.Group>
             ))}

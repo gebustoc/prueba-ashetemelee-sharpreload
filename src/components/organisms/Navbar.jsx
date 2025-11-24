@@ -1,6 +1,5 @@
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import Button from '../atoms/Button';
 import LoginButtons from '../molecules/LoginButtons';
 
 function NavBar() {
