@@ -7,7 +7,7 @@ import ItemController from "../ShittyRemoteStuff/ItemController";
 
 
 function Carrito() {
-    if (!new UserController().userExists(localStorage.getItem("cur_user"))){
+    if (localStorage.getItem("user") == null){
         return (
             <Container className="wrapper">
                 <Text className="font-weight-light" children="Carrito" variant="h1"/>
@@ -15,10 +15,9 @@ function Carrito() {
             </Container>
         );
     }  
-
-    const userData = new UserController().getUser(localStorage.getItem("cur_user"));
-    let PrecioTotal = 0;
-    userData.getCarrito().forEach(element => {PrecioTotal += new ItemController().getItem(element).getPrice();});
+    const userData = JSON.parse(localStorage.getItem("user"));
+    userData.carrito = userData.carrito || "[]";
+    userData.carrito = JSON.parse(userData.carrito); // turns ts into an actual list
 
     return (
         <Container className="wrapper">
@@ -26,20 +25,13 @@ function Carrito() {
             <Container className="d-flex" style={{gap:"1rem"}}>
                 <Text className="font-weight-light" children="Carrito" variant="h1"/>  
             </Container>
-
             <CartContainer user={userData}/>
-        </Container>
-        /*
-        scrapped for reasons
-                <Container className="d-flex flex-row-reverse">
-                    <div style={{alignContent:"center"}}>
-                        <Button children={`Comprar todo (${new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(PrecioTotal)})`} onClick={()=>{
-                            
+            
 
-                        }}/>
-                    </div>
-                </Container>*/
-    );   
+        </Container>
+
+    ); 
+//
     
 
 }

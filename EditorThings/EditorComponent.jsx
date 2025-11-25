@@ -11,7 +11,10 @@ function generateEditor(type,transfms,tableToEdit,key,onChange) {
     if (transfms["override"] != undefined){
         return transfms.override(transfms,tableToEdit,key,onChange);
     }
-        
+    if (transfms["skip"] != undefined){
+        return null
+    }
+
     switch (type) {
         case "number":
             return SpinBoxEditor(transfms,tableToEdit,key,onChange);
@@ -32,12 +35,13 @@ function EditorComponent(table,transforms,extraComponents,onChange){
     for (const key in table) {
         let transfms = transforms[key] || {}
         let type = typeof(table[key])
-
+        let ed = generateEditor(type,transfms,table,key,onChange)
+        if ((ed) == null) continue
         editors.push((
             <div style={{alignContent:"center"}}>
                 <div style={{display:"flex"}}>
                     <div style={{alignContent:"center"}}>{key}</div>
-                    {generateEditor(type,transfms,table,key,onChange)}
+                    {ed}
                 </div>
             </div>
         ));

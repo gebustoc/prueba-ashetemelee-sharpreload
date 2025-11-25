@@ -4,7 +4,8 @@ import ProductosService from "../services/ProductosService";
 import Text from "../components/atoms/Text";
 import Button from "../components/atoms/Button";
 import Image from "../components/atoms/Image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use, useReducer } from "react";
+import UserService from "../services/UserService";
 
 function ProductInfo() {
   const { id } = useParams();
@@ -49,7 +50,19 @@ function ProductInfo() {
       return;
     }
 
-    alert(`Producto "${producto.nombre}" añadido al carrito (demo).`);
+    let user = JSON.parse(localStorage.getItem("user"));
+    user.carrito = user.carrito || "[]";
+    user.carrito = JSON.parse(user.carrito);
+    if (user.carrito.length < 32){return;}
+
+    alert(`Producto "${producto.nombre}" añadido al carrito`);
+    
+    user.carrito.push(producto.id);
+    user.carrito =JSON.stringify(user.carrito);
+    localStorage.setItem("user",JSON.stringify(user))
+    UserService.updateCliente(user.id,user);
+
+  
   };
 
   return (

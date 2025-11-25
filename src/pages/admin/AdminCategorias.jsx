@@ -4,6 +4,7 @@ import ProductosService from "../../services/ProductosService.jsx";
 import { Button } from "react-bootstrap";
 import CategoriaService from "../../services/CategoriaService.jsx";
 import CategoryDropDown from "../../../EditorThings/specialists/CategoryDropDown.jsx";
+import UserService from "../../services/UserService.jsx";
 
 
 
@@ -12,6 +13,9 @@ function AdminCategorias() {
     const [categorias, setCategorias] = useState([]);
     const [loaded, setLoad] = useState(false);
     const [stateHack,setHack] = useState(false)
+    
+    if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
+
 
     const options={
         id:{noedit:true}

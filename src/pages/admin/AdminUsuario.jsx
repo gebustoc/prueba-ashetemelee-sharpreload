@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditorComponent from "../../../EditorThings/EditorComponent.jsx";
 import UserService from "../../services/UserService.jsx";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import comunaService from "../../services/ComunaService.jsx";
 import RolService from "../../services/RolService.jsx";
 
@@ -17,10 +17,12 @@ function AdminUsuario() {
     const [loaded, setLoad] = useState(false);
     const [stateHack,setHack] = useState(false)
 
-
+    console.log(UserService.isAdmin())
+    if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
 
     const options={
         id:{noedit:true},
+        carrito:{skip:true},
         rol:{
             override:function (transfms,tableToEdit,key,onChange){
                 let roleOptions = [];
@@ -85,6 +87,7 @@ function AdminUsuario() {
                 
                 <div style={{display:"flex"}}>
                     <Button onClick={()=>{
+                        usuario.carrito = ""
                         UserService.updateCliente(usuario.id,usuario).catch((err) => console.error("Error:", err));
                     }}>Hacer Cambios</Button>,
                     
@@ -124,6 +127,7 @@ function AdminUsuario() {
                             "id": 22,                
                             "nombre": "Maipú",
                             "region": {"id": 7,"nombre": "Region Metropolitana"}},
+                        "carrito":"",
                         "rol": {"id": 2}
                     })
                                     

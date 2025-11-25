@@ -25,6 +25,8 @@ class UserService {
 
   async register(clienteData) {
     try {
+      if (clienteData.carrito == undefined)clienteData.carrito = "[]";
+
       const response = await axios.post(API_URL, clienteData, {
         headers: {
           "Content-Type": "application/json",
@@ -46,8 +48,7 @@ class UserService {
   async updateCliente(id, clienteData) {
     try {
 
-      console.log(JSON.stringify(clienteData,null,"\t"))
-      console.log(id)
+      if (clienteData.carrito == undefined)clienteData.carrito = "[]";
 
       const response = await axios.put(`${API_URL}/${id}`, clienteData, {
         headers: {"Content-Type": "application/json",},
@@ -91,6 +92,9 @@ class UserService {
         }
       );
       if (response.data) {
+        if (response.data.carrito == undefined)response.data.carrito = "[]";
+
+
         localStorage.setItem("user", JSON.stringify(response.data));
         localStorage.setItem("cur_user", email);
       }
@@ -122,7 +126,7 @@ class UserService {
 
   isAdmin() {
     const user = this.getCurrentUser();
-    return user && user.rol && user.rol.nombre === "ADMIN";
+    return user && user.rol && user.rol.id == 3;
   }
 }
 
