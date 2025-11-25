@@ -15,6 +15,7 @@ import Carrito from './pages/Carrito.jsx';
 import AdminProductos from './pages/admin/AdminProductos.jsx';
 import AdminCategorias from './pages/admin/AdminCategorias.jsx';
 import AdminUsuario from './pages/admin/AdminUsuario.jsx';
+import Checkout from './pages/Checkout.jsx';
 
 function App(){
 
@@ -39,7 +40,8 @@ function App(){
        <Route path="/admin_categoria" element={<AdminCategorias/>}/>
        <Route path="/admin_usuario" element={<AdminUsuario/>}/>
        
-       
+       <Route path="checkout/:id/" element={<Checkout/>}/>
+       <Route path="checkout/:id/:cartSlot" element={<Checkout/>}/>
        
     </Routes>
     <Footer/>

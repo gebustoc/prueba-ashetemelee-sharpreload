@@ -49,11 +49,12 @@ function ProductInfo() {
       alert("Debe iniciar sesión para añadir productos al carrito.");
       return;
     }
+    
 
     let user = JSON.parse(localStorage.getItem("user"));
     user.carrito = user.carrito || "[]";
     user.carrito = JSON.parse(user.carrito);
-    if (user.carrito.length < 32){return;}
+    if (user.carrito.length > 32){return;}
 
     alert(`Producto "${producto.nombre}" añadido al carrito`);
     
@@ -91,7 +92,11 @@ function ProductInfo() {
               className="btn btn-primary"
               children={`Comprar (${producto.stock} restantes)`}
               disabled={!isLogged || producto.stock <= 0}
-              onClick={() => alert("Debe iniciar sesión para comprar")}
+              onClick={() => {
+                  navigate(`/checkout/${producto.id}`)
+
+                }
+              }
             />
             <Button
               className="btn btn-primary"

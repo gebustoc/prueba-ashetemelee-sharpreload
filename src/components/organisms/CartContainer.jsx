@@ -32,7 +32,10 @@ function CartContainer({user}){
                         userClone.carrito = JSON.stringify(user.carrito)
                         localStorage.setItem("user",JSON.stringify(userClone))
                         setProductos(newProductos.slice())
-                    }}/>)
+                    }}
+                    itemSlot={i}
+                
+                />)
                 setProductos(newProductos.slice())
 
             }).catch((err) => console.error("Error:", err));

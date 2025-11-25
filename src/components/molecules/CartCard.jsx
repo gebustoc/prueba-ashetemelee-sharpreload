@@ -8,7 +8,7 @@ import { useState } from "react";
 import ProductosService from "../../services/ProductosService";
 
 
-function CartCard({product,eraseItem}){
+function CartCard({product,eraseItem,itemSlot}){
     const navigate = useNavigate()
     const [stock, setStock] = useState(product.stock)
     return (
@@ -20,11 +20,7 @@ function CartCard({product,eraseItem}){
                     <Text variant="h5" children={new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.precio)}/>
                     <div style={{display:"flex",gap:".5rem"}}>
                     <Button disabled={stock==0} children={`Comprar (stock ${stock})`} onClick={()=>{
-                        navigate(`/checkout/${product.id}`)
-                        /*product.stock = stock-1;
-                        ProductosService.updateProducto(product.id,product)
-                        setStock(stock-1); // huh¡
-                        eraseItem()*/
+                        navigate(`/checkout/${product.id}/${itemSlot}`)
                     }}/>
                     <Button children={<Image src="./img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""/> }  onClick={eraseItem} />
                     </div>

@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react";
 import EditorComponent from "../../../EditorThings/EditorComponent.jsx";
 import ProductosService from "../../services/ProductosService.jsx";
-import { Button } from "react-bootstrap";
+import { Button,Container } from "react-bootstrap";
 import CategoryEditor from "../../../EditorThings/specialists/CategoryDropDown.jsx";
 import CategoriaService from "../../services/CategoriaService.jsx";
 import CategoryDropDown from "../../../EditorThings/specialists/CategoryDropDown.jsx";
