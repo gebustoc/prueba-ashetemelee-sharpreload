@@ -59,13 +59,15 @@ function Checkout(){
                                                     data.stock -= 1
                                                     ProductosService.updateProducto(data.id,data).then(
                                                         ()=>{
-                                                            
                                                             const user = JSON.parse(localStorage.getItem("user"))
                                                             PedidoService.createPedido(
                                                                 {
+                                                                    
+                                                                    "fechaPedido": "2025-11-25T19:33:46.678Z",
+                                                                    totalPedido:1,
                                                                     cliente:user,
                                                                     metodoEnvio: {id: 2},
-                                                                    metodoPago: {id: metodoPago,},
+                                                                    metodoPago: {id: pagoType},
                                                                     estadoPedido: {id: 2,}
                                                                     
                                                                 }
