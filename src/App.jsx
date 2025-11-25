@@ -40,7 +40,7 @@ function App(){
        <Route path="/admin_categoria" element={<AdminCategorias/>}/>
        <Route path="/admin_usuario" element={<AdminUsuario/>}/>
        
-       <Route path="checkout/:id/" element={<Checkout/>}/>
+       <Route path="checkout/:id" element={<Checkout/>}/>
        <Route path="checkout/:id/:cartSlot" element={<Checkout/>}/>
        
     </Routes>
