@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
-function SpinBoxEditor(transfms,tableToEdit,key){
+function SpinBoxEditor(transfms,tableToEdit,key,onChange){
     return (
         <input 
             type="number" 
@@ -12,11 +12,8 @@ function SpinBoxEditor(transfms,tableToEdit,key){
             max={transfms["max"] || Infinity} 
             disabled={transfms["noedit"] || false} 
             onChange={event => {
-                if (isNaN(Number.parseInt(event.target.value)) ){
-                    return
-                }
-
-                tableToEdit[key] = Number(event.target.value)
+                if (isNaN(Number.parseInt(event.target.value)) ){return;}
+                onChange(key,Number.parseInt(event.target.value))
             }}
 
             /> 

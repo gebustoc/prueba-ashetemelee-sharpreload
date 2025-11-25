@@ -13,6 +13,8 @@ import Register from './pages/Register.jsx';
 import NewsTransition from './pages/NewsTransition.jsx';
 import Carrito from './pages/Carrito.jsx';
 import AdminProductos from './pages/admin/AdminProductos.jsx';
+import AdminCategorias from './pages/admin/AdminCategorias.jsx';
+import AdminUsuario from './pages/admin/AdminUsuario.jsx';
 
 function App(){
 
@@ -33,7 +35,11 @@ function App(){
        <Route path="/news/:id" element={<NewsTransition/>}/>       
        <Route path="/login" element={<Login/>}/>
        <Route path="/cart" element={<Carrito/>}/>
-       <Route path="/adminProd" element={<AdminProductos/>}/>
+       <Route path="/admin_productos" element={<AdminProductos/>}/>
+       <Route path="/admin_categoria" element={<AdminCategorias/>}/>
+       <Route path="/admin_usuario" element={<AdminUsuario/>}/>
+       
+       
        
     </Routes>
     <Footer/>

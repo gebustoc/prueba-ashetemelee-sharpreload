@@ -45,10 +45,12 @@ class UserService {
 
   async updateCliente(id, clienteData) {
     try {
+
+      console.log(JSON.stringify(clienteData,null,"\t"))
+      console.log(id)
+
       const response = await axios.put(`${API_URL}/${id}`, clienteData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json",},
       });
       return response.data;
     } catch (error) {

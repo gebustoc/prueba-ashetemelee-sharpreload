@@ -7,16 +7,16 @@ import SpinBoxEditor from "./inbuilts/SpinBoxEditor";
 
 
 
-function generateEditor(type,transfms,tableToEdit,key) {
+function generateEditor(type,transfms,tableToEdit,key,onChange) {
     if (transfms["override"] != undefined){
-        return transfms.override(transfms,tableToEdit,key);
+        return transfms.override(transfms,tableToEdit,key,onChange);
     }
         
     switch (type) {
         case "number":
-            return SpinBoxEditor(transfms,tableToEdit,key);
+            return SpinBoxEditor(transfms,tableToEdit,key,onChange);
         case "string":
-            return TextEditor(transfms,tableToEdit,key);
+            return TextEditor(transfms,tableToEdit,key,onChange);
             
             
 
@@ -27,7 +27,7 @@ function generateEditor(type,transfms,tableToEdit,key) {
 }
 
 
-function EditorComponent(table,transforms,extraComponents){
+function EditorComponent(table,transforms,extraComponents,onChange){
     let editors = [];
     for (const key in table) {
         let transfms = transforms[key] || {}
@@ -37,7 +37,7 @@ function EditorComponent(table,transforms,extraComponents){
             <div style={{alignContent:"center"}}>
                 <div style={{display:"flex"}}>
                     <div style={{alignContent:"center"}}>{key}</div>
-                    {generateEditor(type,transfms,table,key)}
+                    {generateEditor(type,transfms,table,key,onChange)}
                 </div>
             </div>
         ));
@@ -45,7 +45,7 @@ function EditorComponent(table,transforms,extraComponents){
     }     
 
     return (
-        <div style={{display:"flex"}}>
+        <div style={{display:"flex", gap:"2rem", padding:"1rem"}}>
             {editors}
             {extraComponents}
         </div>

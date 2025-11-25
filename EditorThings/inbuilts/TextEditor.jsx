@@ -1,16 +1,14 @@
 import { useState } from "react";
 
 
-function TextEditor(transfms,tableToEdit,key){
+function TextEditor(transfms,tableToEdit,key,onChange){
     return (
         <input  
             name=""
             value={tableToEdit[key]}
             id={key} 
             disabled={transfms["noedit"] || false} 
-            onChange={event => {
-                tableToEdit[key] = toString(event.target.value)
-            }}        
+            onChange={event => {onChange(key,event.target.value)}}
         /> 
     );
 }
