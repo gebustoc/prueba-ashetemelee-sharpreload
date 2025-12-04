@@ -11,9 +11,8 @@ import UserService from "../../services/UserService.jsx";
 
 function AdminCategorias() {
     const [categorias, setCategorias] = useState([]);
-    const [loaded, setLoad] = useState(false);
     const [stateHack,setHack] = useState(false)
-    
+    const [reload,setReload] = useState(false);
     if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
 
 
@@ -23,15 +22,17 @@ function AdminCategorias() {
     };
     
     let items = [];
+    useEffect(
+        ()=>{
+            CategoriaService.getAllCategorias().then((data) => {
+                data.sort((a,b)=>a.id > b.id);
+                setCategorias(data);
+            }).catch((err) => console.error("Error:", err));
+        },
+        [reload]
+    )
 
-    // este check es para que funcione, podria ser un efecto pero ya hize esta wea (sufrimiento con estados)
-    if (!loaded){
-        CategoriaService.getAllCategorias().then((data) => {
-            data.sort((a,b)=>a.id > b.id)
-            setCategorias(data);
-            setLoad(true)
-        }).catch((err) => console.error("Error:", err));
-    } 
+
 
 
     // hell, deberia ser sus propias weas xd
@@ -74,9 +75,7 @@ function AdminCategorias() {
 
             <Button onClick={()=>{
                 CategoriaService.createCategoria({"nombreCategoria": "Mi Categoria"})
-                setLoad(false)
-
-
+                setReload(!reload)
             }}>Crear categoria.</Button>
         </div> 
     );

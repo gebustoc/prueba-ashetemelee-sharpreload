@@ -12,9 +12,11 @@ import CategoryDropDown from "../../../EditorThings/specialists/CategoryDropDown
 
 function AdminProductos() {
     const [productos, setProductos] = useState([]);
-    const [loaded, setLoad] = useState(false);
     const [stateHack,setHack] = useState(false)
     const [listaCategorias,setListaCategorias] = useState([])
+    const [reload,setReload] = useState(false)
+
+    if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
 
     const options={
         id:{noedit:true},
@@ -46,24 +48,18 @@ function AdminProductos() {
         }
     };
     let items = [];
-
-    if (!loaded){
+    useEffect(()=>{
         CategoriaService.getAllCategorias().then((data) => {
             data.sort((a,b)=>a.id > b.id)
             setListaCategorias(data);
-            setLoad(true)
         }).catch((err) => console.error("Error:", err));
 
         ProductosService.getAllProductos().then((data) => {
             data.sort((a,b)=>a.id < b.id)
             setProductos(data);
-            setLoad(true)
-
         }).catch((err) => console.error("Error:", err));
-        
+    },[reload])
 
-
-    }
 
     for (let i = 0; i < productos.length; i++) {
         const producto = productos[i];
@@ -107,7 +103,7 @@ function AdminProductos() {
                     "stock": 0,
                     "categorias": []
                 })
-                setLoad(false)
+                setReload(!reload)
 
 
             }}>Crear producto.</Button>

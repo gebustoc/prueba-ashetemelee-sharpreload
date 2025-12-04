@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditorComponent from "../../../EditorThings/EditorComponent.jsx";
 import UserService from "../../services/UserService.jsx";
 import { Button, Container } from "react-bootstrap";
@@ -13,11 +13,9 @@ function AdminUsuario() {
     const [comunas, setComunas] = useState([]);
     const [roles, setRoles] = useState([]);
 
+    const [reload,setReload] = useState(false) // should probably be unified with stateHack
+    const [stateHack,setHack] = useState(false) // thing to force state updates when addded/removed stuff
 
-    const [loaded, setLoad] = useState(false);
-    const [stateHack,setHack] = useState(false)
-
-    console.log(UserService.isAdmin())
     if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
 
     const options={
@@ -56,26 +54,22 @@ function AdminUsuario() {
 
     let items = [];
 
-    if (!loaded){
+    useEffect(()=>{
         UserService.getAllUsuarios().then((data) => {
             data.sort((a,b)=>a.id < b.id)
             setUsuarios(data);
-            setLoad(true)
-
         }).catch((err) => console.error("Error:", err));
 
         comunaService.getAllComunas().then((data) => {
             setComunas(data);
-            setLoad(true)
         }).catch((err) => console.error("Error:", err));
 
         RolService.getAllRoles().then((data) => {
             setRoles(data);
-            setLoad(true)
         }).catch((err) => console.error("Error:", err));
 
 
-    }
+    },[reload])
 
     for (let i = 0; i < usuarios.length; i++) {
         const usuario = usuarios[i];
@@ -116,7 +110,6 @@ function AdminUsuario() {
 
             <Button onClick={()=>{
                 if (confirm("Crear Cuenta?")){
-                    setLoad(false)
                     UserService.register({
                         "nombre": "usuario pulento ",
                         "email": `${Math.floor(Math.random()*32767)}@email.cl`,
@@ -127,11 +120,12 @@ function AdminUsuario() {
                             "id": 22,                
                             "nombre": "Maipú",
                             "region": {"id": 7,"nombre": "Region Metropolitana"}},
-                        "carrito":"",
-                        "rol": {"id": 2}
-                    })
-                                    
-                
+                            "carrito":"",
+                            "rol": {"id": 2}
+                        })
+                    setReload(!reload)
+                        
+                        
                 }
 
             }}>Crear usuario.</Button>
