@@ -1,10 +1,6 @@
-import { Col, Container, Row } from "react-bootstrap";
-import UserController from "../ShittyRemoteStuff/UserController";
+import { Container } from "react-bootstrap";
 import Text from "../components/atoms/Text";
 import CartContainer from "../components/organisms/CartContainer";
-import Button from "../components/atoms/Button";
-import ItemController from "../ShittyRemoteStuff/ItemController";
-
 
 function Carrito() {
     if (localStorage.getItem("user") == null){
@@ -17,7 +13,7 @@ function Carrito() {
     }  
     const userData = JSON.parse(localStorage.getItem("user"));
     userData.carrito = userData.carrito || "[]";
-    userData.carrito = JSON.parse(userData.carrito); // turns ts into an actual list
+    userData.carrito = JSON.parse(userData.carrito); 
 
     return (
         <Container className="wrapper">
@@ -29,11 +25,7 @@ function Carrito() {
             
 
         </Container>
-
     ); 
-//
-    
-
 }
 
 export default Carrito;

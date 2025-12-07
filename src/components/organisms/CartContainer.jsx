@@ -1,20 +1,13 @@
 
 import Text from "../atoms/Text";
-import ItemController from "../../ShittyRemoteStuff/ItemController";
 import CartCard from "../molecules/CartCard";
 import { Container } from "react-bootstrap";
-import UserController from "../../ShittyRemoteStuff/UserController";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductosService from "../../services/ProductosService";
-
-
-
-
 
 function CartContainer({user}){
     const [cart, setCart] = useState(user.carrito.slice());
     const [productos, setProductos] = useState([]);
-
 
     useEffect(()=>{
         let newProductos = [];

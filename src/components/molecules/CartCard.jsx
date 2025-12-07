@@ -3,10 +3,7 @@ import Text from "../atoms/Text";
 import Button from "../atoms/Button";
 import Image from "../atoms/Image";
 import { useNavigate } from "react-router-dom";
-import ItemController from "../../ShittyRemoteStuff/ItemController";
 import { useState } from "react";
-import ProductosService from "../../services/ProductosService";
-
 
 function CartCard({product,eraseItem,itemSlot}){
     const navigate = useNavigate()

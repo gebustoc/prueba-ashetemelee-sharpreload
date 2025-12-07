@@ -47,8 +47,6 @@ function Login() {
             error: formData.errorEmail,
             onChange: (e) => {
                 let error = "";
-                let correovali = e.target.value.split("@").pop();
-                if (correovali !== "duocuc.cl") error = "el correo no es un correo duoc valido";
                 if (e.target.value.length === 0) error = "el correo no puede estar vacio";
                 setFormData({ ...formData, email: e.target.value, errorEmail: error });
             }
