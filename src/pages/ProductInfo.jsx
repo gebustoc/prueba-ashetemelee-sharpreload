@@ -72,7 +72,7 @@ function ProductInfo() {
         <Col>
           <Image 
           className="img-fluid-border" 
-          src={"https://m.media-amazon.com/images/I/51N7-BydsDL.jpg"} 
+          src={`https://ibb.co/${producto.bbID}`} 
           alt={producto.nombre}
           />
         </Col>

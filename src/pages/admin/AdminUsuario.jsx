@@ -112,7 +112,7 @@ function AdminUsuario() {
                 if (confirm("Crear Cuenta?")){
                     UserService.register({
                         "nombre": "usuario pulento ",
-                        "email": `${Math.floor(Math.random()*32767)}@email.cl`,
+                        "email": `${Math.round(Math.random()*2147483647)}@email.cl`,
                         "telefono": "1234567890",
                         "direccion": "Av. Siempre Viva",
                         "contrasena": "devilsurvivor",
