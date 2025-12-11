@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import EditorComponent from "../../../EditorThings/EditorComponent.jsx";
-import UserService from "../../services/UserService.jsx";
 import { Button, Container } from "react-bootstrap";
 import comunaService from "../../services/ComunaService.jsx";
 import RolService from "../../services/RolService.jsx";
+import UserService from "../../services/UserService.jsx";
 
 
 
@@ -15,6 +15,7 @@ function AdminUsuario() {
 
     const [reload,setReload] = useState(false) // should probably be unified with stateHack
     const [stateHack,setHack] = useState(false) // thing to force state updates when addded/removed stuff
+    console.log(UserService)
 
     if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
 
