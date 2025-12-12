@@ -51,15 +51,20 @@ function App() {
               <AdminCategorias />
             </AdminRoute>
           }
-        />
-        <Route
-          path="/admin_usuario"
-          element={
-            <AdminRoute>
-              <AdminUsuario />
-            </AdminRoute>
-          }
-        />
+        />{
+          /* 
+          no puedo arreglar esto sin la password y ya no tengo tiempo :/
+          <Route
+            path="/admin_usuario"
+            element={
+              <AdminRoute>
+                <AdminUsuario />
+              </AdminRoute>
+            }
+          />
+          
+          */
+        }
         <Route path="checkout/:id" element={<Checkout />} />
         <Route path="checkout/:id/:cartSlot" element={<Checkout />} />
       </Routes>
