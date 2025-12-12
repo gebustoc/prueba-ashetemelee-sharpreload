@@ -6,6 +6,15 @@ import CategoryEditor from "../../../EditorThings/specialists/CategoryDropDown.j
 import CategoriaService from "../../services/CategoriaService.jsx";
 import CategoryDropDown from "../../../EditorThings/specialists/CategoryDropDown.jsx";
 import UserService from "../../services/UserService.jsx";
+import TextViewer from "./prop_viewers/TextViewer.jsx";
+import Text from "../../components/atoms/Text.jsx";
+import CategoriaViewer from "./prop_viewers/CategoriaVIewer.jsx";
+import AdminRow from "./prop_viewers/AdminRow.jsx";
+import { Input } from "../../components/atoms/Input.jsx";
+import DynamicForm from "../../components/molecules/Form.jsx";
+import NumberEditor from "./prop_editors/NumberEditor.jsx";
+import TextEditor from "./prop_editors/TextEditor.jsx";
+import CategoriaEditor from "./prop_editors/CategoriaEditor.jsx";
 
 
 
@@ -13,42 +22,28 @@ import UserService from "../../services/UserService.jsx";
 
 function AdminProductos() {
     const [productos, setProductos] = useState([]);
-    const [stateHack,setHack] = useState(false)
+    const [stateHack,setHack] = useState(false) // hack to force reloading
     const [listaCategorias,setListaCategorias] = useState([])
     const [reload,setReload] = useState(false)
+    const [editedProd,setEditedProd] = useState(null)
+    
+    const displayMethods = {
+        id:TextViewer,
+        nombre:TextViewer,
+        descripcion:TextViewer,
+        precio:TextViewer,
+        stock:TextViewer,
+        categorias:CategoriaViewer,
+        bbID:value=>{
+            return (
+                <div>
+                    <img src="https://pbs.twimg.com/media/G75iKGiWUAAvW9A?format=png&name=small" alt="" width={64} />
+                    <Text children={toString(value)}></Text>
+                </div>
+            );
+        }   
+    }
 
-    if (!UserService.isAdmin()) return(<Container className="wrapper"></Container>);
-
-    const options={
-        id:{noedit:true},
-        categorias:{
-            override:function (transfms,tableToEdit,key,onChange){
-                let elementCategorias = tableToEdit[key];
-                let uiElements = []
-                for (let i=0; i < elementCategorias.length; i++) {
-                    const categoria = elementCategorias[i]
-                    uiElements.push(
-                        <div style={{display:"inline-flex", paddingTop:".5rem",paddingBottom:".5rem" }}>
-                            {CategoryDropDown(listaCategorias,key,tableToEdit,onChange,i)}
-                        </div>)
-                }
-            
-            
-                return (
-                    <div style={{display:"grid"}}>
-                        
-                        <Button onClick={()=>{
-                            elementCategorias.push({id:0})
-                            onChange(key,elementCategorias)
-                        }}>+</Button>
-                        {uiElements}
-                    </div>
-                );
-            
-            }
-        }
-    };
-    let items = [];
     useEffect(()=>{
         CategoriaService.getAllCategorias().then((data) => {
             data.sort((a,b)=>a.id > b.id)
@@ -61,57 +56,52 @@ function AdminProductos() {
         }).catch((err) => console.error("Error:", err));
     },[reload])
 
+    
+    let itemRoots = [];
 
     for (let i = 0; i < productos.length; i++) {
         const producto = productos[i];
-        items.push(
-            EditorComponent(
-                producto,
-                options,
-                <div style={{display:"flex"}}>
-                    <Button onClick={()=>{ProductosService.updateProducto(producto.id,producto).catch((err) => console.error("Error:", err));}}>Hacer Cambios</Button>,
-                    <Button onClick={()=>{
-                        if (confirm("Borrar Elemento?")){
-                            productos.splice(i,1)
-                            setHack(!stateHack)
-                            ProductosService.deleteProducto(producto.id)         
-                        }
-
-                        
-                    }}>🗑</Button>
-                                    
-                </div>,
-
-                (k,v)=>{
-                    producto[k] = v
-                    setHack(!stateHack) // most dogshit solution ever
-                }
-
-        ));
-            
+        itemRoots.push(AdminRow(producto,displayMethods,()=>{setEditedProd(JSON.parse(JSON.stringify(producto)))}));
     }
 
 
+
+    if (editedProd != null){
+        return (
+
+            <div className="wrapper" style={{flexDirection:"column", width:"100vw",gap:"1rem",alignItems:"center"}}>    
+                <Text children={"id: "+editedProd.id}/>
+
+                <TextEditor obj={editedProd} objKey={"nombre"}/>
+                <TextEditor obj={editedProd} objKey={"descripcion"}/>
+                <NumberEditor obj={editedProd} objKey={"precio"}/>
+                <NumberEditor obj={editedProd} objKey={"stock"}/>
+                <CategoriaEditor obj={editedProd} objKey={"categorias"} categoriasValidas={listaCategorias} refresh={()=>{setHack(!stateHack)}} />
+
+                <div style={{gap:"2rem",display:"flex",flexDirection:"column"}}>
+                    <Button onClick={()=>{
+                        ProductosService.updateProducto(editedProd.id,editedProd)
+                        setEditedProd(null);
+                        setReload(!reload);
+                        console.log("pene",editedProd)
+
+                    }}>Hacer Cambios</Button>
+                    <Button onClick={()=>{setEditedProd(null)}}>Cancelar.</Button>
+                </div>
+            </div> 
+        );
+    }
+
     return (
-        <div className="wrapper">
-            {items}
-
-            <Button onClick={()=>{
-                ProductosService.createProducto({
-                    "nombre": "Producto",
-                    "descripcion": "Descripción del producto",
-                    "precio": 0,
-                    "stock": 0,
-                    "categorias": []
-                })
-                setReload(!reload)
-
-
-            }}>Crear producto.</Button>
+        <div className="wrapper" style={{flexDirection:"column", width:"100vw",gap:"1rem",alignItems:"center"}}>
+            {itemRoots}
         </div> 
     );
 
-
 }
 
+
+
 export default AdminProductos;
+
+
