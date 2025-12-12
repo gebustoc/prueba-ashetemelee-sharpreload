@@ -102,29 +102,17 @@ function AdminProductos() {
                             uploadToImgBB(editedProd.bbLocal).then(
                                 (data)=>{
                                     editedProd.bbID = data.url;
-                                    console.log("dataplease",data, editedProd);
-
-                                    ProductosService.updateProducto(editedProd.id,editedProd).then(ReloadTurnBack).catch(err=>{console.error(err);ReloadTurnBack()})
+                                    console.log("dataplease",data, editedProd);   
+                                    uploadProducto(editedProd,ReloadTurnBack)
                                 }
                             ).catch(
                                 (err)=>{console.error(err);ReloadTurnBack()}
                             )
+
                             return;
 
                         }
-                        
-
-                        ProductosService.updateProducto(editedProd.id,editedProd).then(()=>{
-                            setReload(!reload);
-                            setEditedProd(null);
-                        }).catch(
-                            (err)=>{
-                                console.error(err)
-                                setReload(!reload);
-                                setEditedProd(null);
-                            }
-                        )
-
+                        uploadProducto(editedProd,ReloadTurnBack)
 
 
                     }}>Hacer Cambios</Button>
@@ -155,6 +143,15 @@ function AdminProductos() {
 
 }
 
+
+function uploadProducto(editedProd,finish){
+    if (editedProd.id == null){
+        ProductosService.createProducto(editedProd).then(finish).catch((err)=>{console.error(err);finish()})  
+        return
+    }
+
+    ProductosService.updateProducto(editedProd.id,editedProd).then(finish).catch((err)=>{console.error(err);finish()})  
+}
 
 
 
