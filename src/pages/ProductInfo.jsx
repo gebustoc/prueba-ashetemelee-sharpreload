@@ -65,7 +65,7 @@ function ProductInfo() {
 
   
   };
-
+  console.log(producto)
   return (
     <Container className="wrapper">
       <Row className="align-items-center mb-5 p-3">

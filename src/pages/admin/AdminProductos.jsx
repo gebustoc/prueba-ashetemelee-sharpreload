@@ -38,7 +38,6 @@ function AdminProductos() {
         stock:TextViewer,
         categorias:CategoriaViewer,
         bbID:value=>{
-            console.log(value);
             return (
                 <div>
                     <img src={value} alt="" width={64} />
@@ -93,7 +92,6 @@ function AdminProductos() {
 
                 <div style={{gap:"2rem",display:"flex",flexDirection:"column"}}>
                     <Button onClick={()=>{
-                        console.log(editedProd)
                         setProductos([]);
                         if (editedProd.bbLocal != undefined){
                             //await 
