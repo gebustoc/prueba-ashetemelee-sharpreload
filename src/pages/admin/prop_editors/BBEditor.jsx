@@ -7,11 +7,12 @@ function BBEditor({objKey,obj,refresh}) {
     return (
         <div style={{display:"flex",flexDirection:"column"}}>
             <Text children={objKey}></Text>
-            <img src={`https://ibb.co/${value}`} alt="" />
+            <img src={value} alt="" />
             <div style={{display:"flex", gap:"1rem"}}>
                 <label htmlFor="fileInput">Subir Foto (32MB) max</label>
                 <input type="file" id="fileInput" accept="image/*" onChange={(event)=>{
-                    obj.bbLocal = event.target.value;
+                    obj.bbLocal = event.target.files[0];
+                    console.log(obj.bbLocal)
                 }}/>
             </div>
 

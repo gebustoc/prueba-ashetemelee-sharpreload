@@ -8,7 +8,7 @@ function ProductCard({product}) {
   const navigate = useNavigate();
 
   const imageUrl = product.bbID 
-    ? `https://ibb.co/${product.bbID}` 
+    ? product.bbID 
     : "https://m.media-amazon.com/images/I/51N7-BydsDL.jpg";
 
   return (

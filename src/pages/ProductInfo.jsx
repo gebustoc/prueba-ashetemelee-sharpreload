@@ -72,7 +72,7 @@ function ProductInfo() {
         <Col>
           <Image 
           className="img-fluid-border" 
-          src={`https://ibb.co/${producto.bbID}`} 
+          src={producto.bbID} 
           alt={producto.nombre}
           />
         </Col>

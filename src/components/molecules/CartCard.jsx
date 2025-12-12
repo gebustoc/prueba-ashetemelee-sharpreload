@@ -12,7 +12,7 @@ function CartCard({product,eraseItem,itemSlot}){
     return (
         <Card>
             <Row className>
-                <Card.Img src="https://m.media-amazon.com/images/I/51N7-BydsDL.jpg" style={{width: "15rem"}}/>
+                <Card.Img src={product.bbID} style={{width: "15rem"}}/>
                 <Col>
                     <Text variant="h3" children={product.nombre}/>
                     <Text variant="h5" children={new Intl.NumberFormat("de-DE", { style: "currency", currency: "CLP" }).format(product.precio)}/>

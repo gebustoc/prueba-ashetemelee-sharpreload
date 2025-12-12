@@ -16,6 +16,7 @@ import NumberEditor from "./prop_editors/NumberEditor.jsx";
 import TextEditor from "./prop_editors/TextEditor.jsx";
 import CategoriaEditor from "./prop_editors/CategoriaEditor.jsx";
 import BBEditor from "./prop_editors/BBEditor.jsx";
+import { uploadToImgBB } from "../../services/uploadImage.js";
 
 
 
@@ -95,8 +96,30 @@ function AdminProductos() {
                         setProductos([]);
                         if (editedProd.bbLocal != undefined){
                             //await 
+                            uploadToImgBB(editedProd.bbLocal).then(
+                                (data)=>{
+                                    console.log(data);
+                                    editedProd.bbID = data.url;
 
-
+                                    ProductosService.updateProducto(editedProd.id,editedProd).then(()=>{
+                                        setReload(!reload);
+                                        setEditedProd(null);
+                                    }).catch(
+                                        (err)=>{
+                                            console.error(err)
+                                            setReload(!reload);
+                                            setEditedProd(null);
+                                        }
+                                    )
+                                }
+                            ).catch(
+                                (err)=>{
+                                    console.error(err)
+                                    setReload(!reload);
+                                    setEditedProd(null);
+                                }
+                            )
+                            return;
 
                         }
                         

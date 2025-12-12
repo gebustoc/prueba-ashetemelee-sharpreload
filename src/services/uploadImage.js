@@ -37,8 +37,7 @@ export const uploadToImgBB = async (file) => {
                     if (result.success) {
                         resolve({
                             url: result.data.url,
-                            id:result.data.id,
-                            preview: uri,
+                            
                         });
                     } else {
                         reject(new Error(result.error?.message || "Error al subir"));
@@ -47,7 +46,7 @@ export const uploadToImgBB = async (file) => {
                     reject(err);
                 }
             },
-            'base64'      // outputType (string)
+            'base64'      // outputType (string) /???
         );
     });
 };
