@@ -15,6 +15,7 @@ import DynamicForm from "../../components/molecules/Form.jsx";
 import NumberEditor from "./prop_editors/NumberEditor.jsx";
 import TextEditor from "./prop_editors/TextEditor.jsx";
 import CategoriaEditor from "./prop_editors/CategoriaEditor.jsx";
+import BBEditor from "./prop_editors/BBEditor.jsx";
 
 
 
@@ -27,6 +28,7 @@ function AdminProductos() {
     const [reload,setReload] = useState(false)
     const [editedProd,setEditedProd] = useState(null)
     
+    let itemRoots = [];
     const displayMethods = {
         id:TextViewer,
         nombre:TextViewer,
@@ -56,13 +58,21 @@ function AdminProductos() {
         }).catch((err) => console.error("Error:", err));
     },[reload])
 
+    // dogshit hack for a load screen (too lazy for another state)
+    if (editedProd != null && productos.length == 0){
+        return (
+            <div className="wrapper" style={{flexDirection:"column", width:"100vw",gap:"1rem",alignItems:"center"}}>
+                <Text children={"Haciendo cambios. porfavor espere"}/>
+            </div> 
+        );
+    }
     
-    let itemRoots = [];
 
     for (let i = 0; i < productos.length; i++) {
         const producto = productos[i];
         itemRoots.push(AdminRow(producto,displayMethods,()=>{setEditedProd(JSON.parse(JSON.stringify(producto)))}));
     }
+
 
 
 
@@ -77,13 +87,32 @@ function AdminProductos() {
                 <NumberEditor obj={editedProd} objKey={"precio"}/>
                 <NumberEditor obj={editedProd} objKey={"stock"}/>
                 <CategoriaEditor obj={editedProd} objKey={"categorias"} categoriasValidas={listaCategorias} refresh={()=>{setHack(!stateHack)}} />
+                <BBEditor obj={editedProd} objKey={"bbID"} refresh={()=>{setHack(!stateHack)}} ></BBEditor>
 
                 <div style={{gap:"2rem",display:"flex",flexDirection:"column"}}>
                     <Button onClick={()=>{
-                        ProductosService.updateProducto(editedProd.id,editedProd)
-                        setEditedProd(null);
-                        setReload(!reload);
-                        console.log("pene",editedProd)
+                        console.log(editedProd)
+                        setProductos([]);
+                        if (editedProd.bbLocal != undefined){
+                            //await 
+
+
+
+                        }
+                        
+
+                        ProductosService.updateProducto(editedProd.id,editedProd).then(()=>{
+                            setReload(!reload);
+                            setEditedProd(null);
+                        }).catch(
+                            (err)=>{
+                                console.error(err)
+                                setReload(!reload);
+                                setEditedProd(null);
+                            }
+                        )
+
+
 
                     }}>Hacer Cambios</Button>
                     <Button onClick={()=>{setEditedProd(null)}}>Cancelar.</Button>
@@ -99,6 +128,8 @@ function AdminProductos() {
     );
 
 }
+
+
 
 
 
