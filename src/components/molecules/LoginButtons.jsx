@@ -1,3 +1,4 @@
+import React from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
@@ -6,8 +7,6 @@ import UserService from "../../services/UserService";
 function LoginButtons() {
     const navigate = useNavigate();
     let loggedUser = localStorage.getItem("cur_user"); // oh god why
-    
-
 
     if (loggedUser == null){
         return (

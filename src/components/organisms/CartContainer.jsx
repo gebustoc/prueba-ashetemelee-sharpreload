@@ -1,4 +1,4 @@
-
+import React from 'react';
 import Text from "../atoms/Text";
 import CartCard from "../molecules/CartCard";
 import { Container } from "react-bootstrap";

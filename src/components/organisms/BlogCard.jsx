@@ -1,3 +1,4 @@
+import React from "react";
 import BlogCardContent from "../molecules/BlogCardContent";
 import { Link } from "react-router-dom";
 

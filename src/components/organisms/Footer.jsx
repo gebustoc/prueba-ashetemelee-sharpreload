@@ -1,6 +1,6 @@
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Text from "../atoms/Text";
-
 
 function Footer() {
     return (
@@ -25,6 +25,5 @@ function Footer() {
         </Container>
     );
 }
-
 
 export default Footer;

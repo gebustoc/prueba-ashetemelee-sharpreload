@@ -1,3 +1,4 @@
+import React from 'react';
 import HeroOverlay from "../molecules/HeroOverlay";
 
 function HeroSection({ title, description, backgroundImage }) {

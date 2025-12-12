@@ -1,15 +1,14 @@
-// karma.conf.js
 module.exports = function (config) {
  config.set({
    frameworks: ['jasmine'],
-files: [
-     'src/test/setupTests.js',
-     'src/test/**/*.spec.jsx'
-   ],
-   preprocessors: {
-     'src/test/setupTests.js': ['webpack'],
-     'src/test/**/*.spec.jsx': ['webpack']
-   },
+    files: [
+        'src/test/setupTests.js',
+        'src/test/**/*.spec.jsx'
+      ],
+      preprocessors: {
+        'src/test/setupTests.js': ['webpack'],
+        'src/test/**/*.spec.jsx': ['webpack']
+      },
    webpack: {
      mode: 'development',
      module: {

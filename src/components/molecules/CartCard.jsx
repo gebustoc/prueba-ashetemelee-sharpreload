@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, Col, FormCheck, Row } from "react-bootstrap";
 import Text from "../atoms/Text";
 import Button from "../atoms/Button";
@@ -24,8 +25,7 @@ function CartCard({product,eraseItem,itemSlot}){
                 </Col>
             </Row>
         </Card>
-
-
     );
 }
+
 export default CartCard;

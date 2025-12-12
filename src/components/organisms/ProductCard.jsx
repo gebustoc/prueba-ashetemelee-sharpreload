@@ -1,14 +1,15 @@
+import React from 'react';
 import {Button,Card} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import '../../styles/product-card.css';
-
 
 function ProductCard({product}) {
     
   const navigate = useNavigate();
 
-  const imageUrl = `https://ibb.co/${product.bbID}`
-  //product.imagen || "https://m.media-amazon.com/images/I/51N7-BydsDL.jpg";
+  const imageUrl = product.bbID 
+    ? `https://ibb.co/${product.bbID}` 
+    : "https://m.media-amazon.com/images/I/51N7-BydsDL.jpg";
 
   return (
     <div id="product_card" style={{ width: "18rem" }}>
@@ -42,6 +43,5 @@ function ProductCard({product}) {
     </div>
   );
 }
-
 
 export default ProductCard;

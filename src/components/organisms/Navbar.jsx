@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import LoginButtons from '../molecules/LoginButtons';
 
