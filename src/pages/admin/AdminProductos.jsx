@@ -99,8 +99,8 @@ function AdminProductos() {
                             //await 
                             uploadToImgBB(editedProd.bbLocal).then(
                                 (data)=>{
-                                    console.log(data);
                                     editedProd.bbID = data.url;
+                                    console.log("dataplease",data, editedProd);
 
                                     ProductosService.updateProducto(editedProd.id,editedProd).then(()=>{
                                         setReload(!reload);

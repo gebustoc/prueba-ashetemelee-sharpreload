@@ -1,9 +1,9 @@
 import { Button } from "react-bootstrap";
 import Text from "../../../components/atoms/Text";
 
-function BBEditor({objKey,obj,refresh}) {
-    console.log(objKey," ",obj)
+function    BBEditor({objKey,obj,refresh}) {
     let value = obj[objKey];
+    console.log(objKey," ",obj," ",value)
     return (
         <div style={{display:"flex",flexDirection:"column"}}>
             <Text children={objKey}></Text>
@@ -12,7 +12,6 @@ function BBEditor({objKey,obj,refresh}) {
                 <label htmlFor="fileInput">Subir Foto (32MB) max</label>
                 <input type="file" id="fileInput" accept="image/*" onChange={(event)=>{
                     obj.bbLocal = event.target.files[0];
-                    console.log(obj.bbLocal)
                 }}/>
             </div>
 
