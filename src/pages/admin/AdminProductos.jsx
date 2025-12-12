@@ -38,9 +38,10 @@ function AdminProductos() {
         stock:TextViewer,
         categorias:CategoriaViewer,
         bbID:value=>{
+            console.log(value);
             return (
                 <div>
-                    <img src="https://pbs.twimg.com/media/G75iKGiWUAAvW9A?format=png&name=small" alt="" width={64} />
+                    <img src={value} alt="" width={64} />
                     <Text children={toString(value)}></Text>
                 </div>
             );
