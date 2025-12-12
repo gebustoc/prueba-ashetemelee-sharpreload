@@ -78,6 +78,11 @@ function AdminProductos() {
 
 
     if (editedProd != null){
+        const ReloadTurnBack = ()=>{
+            setReload(!reload);
+            setEditedProd(null);   
+        }
+
         return (
 
             <div className="wrapper" style={{flexDirection:"column", width:"100vw",gap:"1rem",alignItems:"center"}}>    
@@ -94,29 +99,15 @@ function AdminProductos() {
                     <Button onClick={()=>{
                         setProductos([]);
                         if (editedProd.bbLocal != undefined){
-                            //await 
                             uploadToImgBB(editedProd.bbLocal).then(
                                 (data)=>{
                                     editedProd.bbID = data.url;
                                     console.log("dataplease",data, editedProd);
 
-                                    ProductosService.updateProducto(editedProd.id,editedProd).then(()=>{
-                                        setReload(!reload);
-                                        setEditedProd(null);
-                                    }).catch(
-                                        (err)=>{
-                                            console.error(err)
-                                            setReload(!reload);
-                                            setEditedProd(null);
-                                        }
-                                    )
+                                    ProductosService.updateProducto(editedProd.id,editedProd).then(ReloadTurnBack).catch(err=>{console.error(err);ReloadTurnBack()})
                                 }
                             ).catch(
-                                (err)=>{
-                                    console.error(err)
-                                    setReload(!reload);
-                                    setEditedProd(null);
-                                }
+                                (err)=>{console.error(err);ReloadTurnBack()}
                             )
                             return;
 
@@ -146,6 +137,19 @@ function AdminProductos() {
     return (
         <div className="wrapper" style={{flexDirection:"column", width:"100vw",gap:"1rem",alignItems:"center"}}>
             {itemRoots}
+            <Button onClick={
+                ()=>{
+                    setEditedProd({
+                        id:null,
+                        nombre:"",
+                        descripcion:"",
+                        precio:0,
+                        stock:0,
+                        bbID:"",
+                        categorias:[],
+                    })
+                }
+            }>Crear Producto.</Button>
         </div> 
     );
 
