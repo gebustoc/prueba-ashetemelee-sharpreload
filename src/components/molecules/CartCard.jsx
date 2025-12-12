@@ -20,7 +20,7 @@ function CartCard({product,eraseItem,itemSlot}){
                     <Button disabled={stock==0} children={`Comprar (stock ${stock})`} onClick={()=>{
                         navigate(`/checkout/${product.id}/${itemSlot}`)
                     }}/>
-                    <Button children={<Image src="./img/delete_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg" alt=""/> }  onClick={eraseItem} />
+                    <Button children={<Image src={product.bbID} alt=""/> }  onClick={eraseItem} />
                     </div>
                 </Col>
             </Row>
